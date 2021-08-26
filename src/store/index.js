@@ -1,6 +1,9 @@
 import { applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
-import reducers from './reducers/quiz.reducer'
+import quizReducer from './reducers/quiz.reducer'
+import logger from './middleware'
 
-const store = createStore(reducers, applyMiddleware(thunk))
+const rootReducer = quizReducer
+
+const store = createStore(rootReducer, applyMiddleware(logger, thunk))
 export default store;
