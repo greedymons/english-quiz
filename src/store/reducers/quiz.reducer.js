@@ -36,9 +36,10 @@ const initSate = {
   error: null
 }
 
-const quizReducer = (state = initSate, action) => {
+const quizReducer = (state = JSON.parse(JSON.stringify(initSate)), action) => {
   switch (action.type) {
     case ('ADD_ANSWER'):
+      console.log('HELOOOOOOOOO');
       return { ...state, answers: state.answers.concat(action.payload)}
     default:
       return state;

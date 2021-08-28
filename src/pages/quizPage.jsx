@@ -1,19 +1,19 @@
 import React from 'react'
 import Card from '../components/card'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 
 function QuizPage() {
-  const dispatch = useDispatch()
-  const { questions, loading, error } = useSelector(state => state)
+  const { questions, answers, loading, error } = useSelector(state => state)
 
-  const num = JSON.parse(localStorage.getItem('quiz')).currentQuestion
-  console.log(num,"<<<<<<");
   return (
     <>
       <h1>Helooo world from quiz page</h1>
+      {
+        JSON.stringify(answers)
+      }
       <div className="container">
-        <Card data={questions[num-1]} />
+        <Card data={questions[answers.length]} />
       </div>
     </>
   )
