@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { addAnsw } from '../store/actions/quiz.action'
+import React, { useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import { useDispatch, useSelector } from 'react-redux';
+import { addAnsw, changeLoad } from '../store/actions/quiz.action'
 
 function Card(props) {
+  const { questions, loading } = useSelector(state => state)
   const quizStatus = JSON.parse(localStorage.getItem('quiz'))
   const dispatch = useDispatch();
   const [actions, setActions] = useState({
     option: "",
     buttonStatus: false,
-    questionStatus: "",
-    temp: ""
+    questionStatus: ""
   })
 
   const [numQues, setNumQues] = useState(quizStatus.currentQuestion)
@@ -18,21 +19,32 @@ function Card(props) {
     let { value } = e.target
     setActions({ ...actions, option:value })
   }
+  function loadSkeleteon() {
+    dispatch(changeLoad(false))
+  }
   const submitAns = () => {
-    console.log("HARA");
-    if (actions.option !== "") {
+    if (actions.option !== "" && numQues < questions.length) {
       setNumQues(numQues + 1)
       dispatch(addAnsw(actions.option))
       setActions({ ...actions, option: "" })
+      setTimeout(loadSkeleteon, 500)
+    } else {
+      alert('selesai')
     }
   }
+
+  
 
   return (
     <>
       <div className="card container" style={{width:"65%"}}>
         <div className="card-header text-end">
-          Question Number {props.data.id}
-        </div>
+          {
+            loading ? <Skeleton height={18} /> : <div>Question Number {props.data.id}</div>
+          }
+          </div>
+      {
+          loading ? <Skeleton count={7}/> :
       <div className="card-body">
         {
           props.data.story ? <p className="card-text">{props.data.story}</p> : ""
@@ -75,6 +87,7 @@ function Card(props) {
       </div>
 
       </div>
+      }
         {
           actions.option === "" ?
             <button type="submit" className="btn btn-primary btn-sm" disabled>HMMM</button>
@@ -82,7 +95,9 @@ function Card(props) {
             <div type="submit" onClick={submitAns} className="btn btn-primary btn-sm">NEXT QUESTION</div>
         }
         <div className="card-footer text-muted text-end">
-          2 days ago
+          {
+            loading ? <Skeleton /> : <div> 2 days  </div>
+          }
         </div>
       </div>
     </>

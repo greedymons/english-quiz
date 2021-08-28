@@ -40,7 +40,9 @@ const quizReducer = (state = JSON.parse(JSON.stringify(initSate)), action) => {
   switch (action.type) {
     case ('ADD_ANSWER'):
       console.log('HELOOOOOOOOO');
-      return { ...state, answers: state.answers.concat(action.payload)}
+      return { ...state, answers: state.answers.concat(action.payload), loading: true}
+    case ('CHANGE_LOAD'):
+      return { ...state, loading: false };
     default:
       return state;
   }

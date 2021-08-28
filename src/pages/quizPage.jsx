@@ -4,16 +4,12 @@ import { useSelector } from 'react-redux'
 
 
 function QuizPage() {
-  const { questions, answers, loading, error } = useSelector(state => state)
+  const { questions, answers } = useSelector(state => state)
 
   return (
     <>
-      <h1>Helooo world from quiz page</h1>
-      {
-        JSON.stringify(answers)
-      }
-      <div className="container">
-        <Card data={questions[answers.length]} />
+      <div className="container" style={{marginTop:"5%"}}>
+        <Card data={questions[answers.length]}/>
       </div>
     </>
   )

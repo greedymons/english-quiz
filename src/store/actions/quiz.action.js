@@ -12,4 +12,11 @@ const remAnsw = payload => {
   };
 };
 
-export { addAnsw, remAnsw };
+const changeLoad = payload => {
+  return {
+    type: 'CHANGE_LOAD',
+    payload
+  };
+};
+
+export { addAnsw, remAnsw, changeLoad };
