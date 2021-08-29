@@ -12,6 +12,13 @@ const remAnsw = payload => {
   };
 };
 
+const correction = payload => {
+  return {
+    type: 'CORRECTION',
+    payload
+  };
+};
+
 const changeLoad = payload => {
   return {
     type: 'CHANGE_LOAD',
@@ -19,4 +26,4 @@ const changeLoad = payload => {
   };
 };
 
-export { addAnsw, remAnsw, changeLoad };
+export { addAnsw, remAnsw, changeLoad, correction };

@@ -1,6 +1,7 @@
 let Path = {
   home: '/',
-  quiz: '/quiz'
+  quiz: '/quiz',
+  final: '/finish'
 };
 
 export default Path;

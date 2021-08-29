@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { addAnsw, changeLoad } from '../store/actions/quiz.action'
+import { addAnsw, changeLoad, correction } from '../store/actions/quiz.action'
 
 function Card(props) {
   const { questions, loading } = useSelector(state => state)
-  const quizStatus = JSON.parse(localStorage.getItem('quiz'))
   const dispatch = useDispatch();
+  const history = useHistory();
   const [actions, setActions] = useState({
     option: "",
     buttonStatus: false,
     questionStatus: ""
   })
-
+  
+  const quizStatus = JSON.parse(localStorage.getItem('quiz'))
   const [numQues, setNumQues] = useState(quizStatus.currentQuestion)
 
   const chooseOption = (e) => {
@@ -28,8 +30,11 @@ function Card(props) {
       dispatch(addAnsw(actions.option))
       setActions({ ...actions, option: "" })
       setTimeout(loadSkeleteon, 500)
-    } else {
-      alert('selesai')
+    } else if (actions.option !== "") {
+      dispatch(addAnsw(actions.option))
+      setActions({ ...actions, option: "" })
+      dispatch(correction())
+      history.push('/finish')
     }
   }
 

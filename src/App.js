@@ -1,6 +1,6 @@
 import './App.css';
 
-import { MainPage, QuizPage } from './routers/index'
+import { MainPage, QuizPage, FinalPage } from './routers/index'
 import Path from './routers/path'
 
 import NavBar from './components/navbar'
@@ -22,6 +22,9 @@ function App() {
           </Route>
           <Route exact path={Path.quiz}>
             <QuizPage />
+          </Route>
+          <Route exact path={Path.final}>
+            <FinalPage />
           </Route>
         </Switch>
 
