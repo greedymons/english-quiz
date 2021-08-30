@@ -2,7 +2,7 @@ import './App.css';
 
 import { MainPage, QuizPage, FinalPage } from './routers/index'
 import Path from './routers/path'
-
+import React, { useEffect } from 'react'
 import NavBar from './components/navbar'
 
 import {
@@ -12,6 +12,19 @@ import {
 } from 'react-router-dom';
 
 function App() {
+
+  useEffect(() => {
+    window.addEventListener("beforeunload", alertUser);
+    return () => {
+      window.removeEventListener("beforeunload", alertUser);
+    };
+  }, []);
+  const alertUser = (e) => {
+    e.preventDefault();
+    localStorage.setItem('quiz', JSON.stringify({status:"start","currentQuestion":1}))
+    e.returnValue = "";
+  };
+
   return (
     <Router>
       <div id="App">
