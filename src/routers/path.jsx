@@ -1,5 +1,6 @@
 let Path = {
   home: '/',
+  about: '/about',
   quiz: '/quiz',
   final: '/finish'
 };

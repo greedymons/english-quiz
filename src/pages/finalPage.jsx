@@ -2,30 +2,61 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { remAnsw } from '../store/actions/quiz.action'
+import Final from '../assets/final.jpg'
+import { Link } from 'react-router-dom'
 
 function FinalPage () {
   const history = useHistory()
   const dispatch = useDispatch()
   const { score } = useSelector(state => state)
   const endQuiz = () => {
-    localStorage.setItem('quiz', JSON.stringify({
-      status: 'finish'
-    }))
+    localStorage.clear()
     dispatch(remAnsw())
     history.push('/')
   }
 
   return (
     <>
-    {
-      score
-    }
-      <div className="container">
-        <div>
-          <h1>Mini Quiz Bahasa Inggriss Marshanda</h1>
-            <div type="div" className="btn btn-sm btn-danger" onClick={_ => endQuiz()}>Start Again</div>
+      <div>
+        <div className="container">
+          <div className="row">
+
+            <div className="col-lg-7 col-md-6 align-self-center">
+              <img
+                src={Final}
+                style={{
+                  marginTop: "10%",
+                  maxWidth: "100%",
+                  height: "auto"
+                }}
+                alt="landing page"
+              ></img>
+            </div>
+
+            <div className="col-lg-5 col-md-6 align-self-center">
+              <div style={{ marginLeft: "10%", marginTop: "10%" }}>
+                <h1 style={{ fontFamily: "Playfair Display, serif", fontWeight: 400 }}>Hi</h1>
+
+                <p style={{ fontFamily: "Playfair Display, serif", fontWeight: 400 }}>
+                  {score < 80 ? 
+                    <p> Congratulations, you have finished this quiz your final score is <b> { score } </b> keep learning.</p>:
+                    <p> You are great, keep up your good works <b> {score} </b> </p>
+                  }
+                </p>
+
+
+                <Link>
+                  <div type="button" className="btn btn-light" onClick={_ => endQuiz()}
+                    style={{ backgroundColor: "#CEE5D0", fontFamily: "Playfair Display, serif", fontWeight: 400 }}
+                  >Start Again</div>
+                </Link>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
+
     </>
   )
 }

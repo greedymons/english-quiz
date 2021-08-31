@@ -42,7 +42,7 @@ function Card(props) {
 
   return (
     <>
-      <div className="card container" style={{width:"65%"}}>
+      <div className="card-header text-black" style={{ width: "65%", backgroundColor: "#F3F0D7"}}>
         <div className="card-header text-end">
           {
             loading ? <Skeleton height={18} /> : <div>Question Number {props.data.id}</div>
@@ -95,13 +95,13 @@ function Card(props) {
       }
         {
           actions.option === "" ?
-            <button type="submit" className="btn btn-primary btn-sm" disabled>HMMM</button>
+            <button type="submit" className="btn btn-primary btn-sm mb-2" style={{ backgroundColor: "#185ADB" }} disabled>SUBMIT</button>
           :
-            <div type="submit" onClick={submitAns} className="btn btn-primary btn-sm">NEXT QUESTION</div>
+            <div type="submit" onClick={submitAns} className="btn btn-primary btn-sm mb-2" style={{ backgroundColor: "#185ADB" }} >SUBMIT</div>
         }
         <div className="card-footer text-muted text-end">
           {
-            loading ? <Skeleton /> : <div> 2 days  </div>
+            loading ? <Skeleton /> : <div> {questions.length - props.data.id} remaining questions </div>
           }
         </div>
       </div>

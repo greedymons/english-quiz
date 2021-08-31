@@ -8,9 +8,13 @@ function QuizPage() {
 
   return (
     <>
-      <div className="container" style={{marginTop:"5%"}}>
+      <div style={{ fontFamily: "Playfair Display, serif", fontWeight: 400}}>
+      <div className="container mb-5 d-flex justify-content-center" style={{marginTop:"5%", display:'inline-block'}}>
         <Card data={questions[answers.length]}/>
       </div>
+    </div>
+
+    
     </>
   )
 }

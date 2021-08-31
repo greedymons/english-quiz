@@ -1,6 +1,6 @@
 import './App.css';
 
-import { MainPage, QuizPage, FinalPage } from './routers/index'
+import { MainPage, QuizPage, FinalPage, About } from './routers/index'
 import Path from './routers/path'
 import React, { useEffect } from 'react'
 import NavBar from './components/navbar'
@@ -32,6 +32,9 @@ function App() {
         <Switch>
           <Route exact path={Path.home}>
             <MainPage />
+          </Route>
+          <Route exact path={Path.about}>
+            <About />
           </Route>
           <Route exact path={Path.quiz}>
             <QuizPage />
