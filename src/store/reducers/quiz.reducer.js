@@ -136,7 +136,8 @@ Not all coffee cups are designed with a hole, of course. Some have lids with a t
   answers: [],
   loading: false,
   error: null,
-  score: 0
+  score: 0,
+  corrections: []
 }
 
 const quizReducer = (state = JSON.parse(JSON.stringify(initSate)), action) => {
@@ -153,16 +154,16 @@ const quizReducer = (state = JSON.parse(JSON.stringify(initSate)), action) => {
       let c = state.questions.map(function (obj) { return obj.answer; });
       let d = state.answers
       let score = 0
+      let corrections = []
       for (let i = 0; i < c.length; i++) {
-        console.log(i);
         if (c[i] === d[i]) {
           score++
         } else {
-          console.log(c[i],d[i]);
+          corrections.push([i+1, c[i]])
         }
       }
       score = (score/c.length) * 100
-      return { ...state, score: score}
+      return { ...state, score: score, corrections: corrections}
     default:
       return state;
   }

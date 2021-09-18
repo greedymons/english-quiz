@@ -7,7 +7,7 @@ function NavBar() {
       <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#5E454B" }}>
         <div className="container-fluid">
           <Link className="navbar-brand" to={"/"}>English Quiz</Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">

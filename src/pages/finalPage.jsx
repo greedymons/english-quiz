@@ -4,13 +4,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { remAnsw } from '../store/actions/quiz.action'
 import Final from '../assets/final.jpg'
 import { Link } from 'react-router-dom'
+import ParticlesBg from 'particles-bg'
 
 function FinalPage () {
   const history = useHistory()
   const dispatch = useDispatch()
-  const { score } = useSelector(state => state)
+  const { score, corrections } = useSelector(state => state)
   const endQuiz = () => {
-    localStorage.clear()
+    localStorage.setItem('quiz', JSON.stringify({
+      status: 'finish'
+    }))
     dispatch(remAnsw())
     history.push('/')
   }
@@ -20,8 +23,7 @@ function FinalPage () {
       <div>
         <div className="container">
           <div className="row">
-
-            <div className="col-lg-7 col-md-6 align-self-center">
+            <div className="col-lg-6 col-md-6 align-self-center">
               <img
                 src={Final}
                 style={{
@@ -33,7 +35,7 @@ function FinalPage () {
               ></img>
             </div>
 
-            <div className="col-lg-5 col-md-6 align-self-center">
+            <div className="col-lg-6 col-md-6 align-self-center">
               <div style={{ marginLeft: "10%", marginTop: "10%" }}>
                 <h1 style={{ fontFamily: "Playfair Display, serif", fontWeight: 400 }}>Hi</h1>
 
@@ -44,19 +46,45 @@ function FinalPage () {
                   }
                 </p>
 
-
                 <Link>
-                  <div type="button" className="btn btn-light" onClick={_ => endQuiz()}
+                  <div type="button" className="btn btn-light mb-2" onClick={_ => endQuiz()}
                     style={{ backgroundColor: "#CEE5D0", fontFamily: "Playfair Display, serif", fontWeight: 400 }}
                   >Start Again</div>
                 </Link>
+
+
+                { corrections.length > 0 ?
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Number</th>
+                      <th scope="col">Correct Answers</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {corrections.map((item, i) => {
+                      return (
+                      <tr key={i}>
+                        <th scope="row">{item[0]}</th>
+                        <td>{item[1]}</td>
+                      </tr>   
+                      )                 
+                      }) 
+                    }
+                </tbody>
+                </table>
+                : ""
+                }
+
+                
               </div>
             </div>
 
           </div>
         </div>
       </div>
-
+      
+      <ParticlesBg color="#79B4B7" type="cobweb" bg={true} />
     </>
   )
 }

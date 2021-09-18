@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import marshanda_safa_nabilah from '../assets/marshanda_safa_nabilah.jpeg'
+import ParticlesBg from 'particles-bg'
 
 function About() {
 
@@ -42,6 +43,7 @@ function About() {
           </div>
         </div>
       </div>
+      <ParticlesBg color="#79B4B7" type="cobweb" bg={true} />
     </>
   )
 }

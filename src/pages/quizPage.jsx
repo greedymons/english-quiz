@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Card from '../components/card'
 import { useSelector } from 'react-redux'
-
+import ParticlesBg from 'particles-bg'
 
 function QuizPage() {
   const { questions, answers } = useSelector(state => state)
@@ -13,7 +13,7 @@ function QuizPage() {
         <Card data={questions[answers.length]}/>
       </div>
     </div>
-
+      <ParticlesBg color="#9D9D9D" type="cobweb" bg={true} />
     
     </>
   )

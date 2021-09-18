@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import LandingPage from '../assets/bg_1.jpg'
+import LandingPage from '../assets/bg_1.png'
+import ParticlesBg from 'particles-bg'
 
 function MainPage () {
   const history = useHistory()
@@ -32,7 +33,7 @@ function MainPage () {
               
               <Link>
                 <div type="button" className="btn btn-light" onClick={_ => playQuiz()}
-                  style={{ backgroundColor: "#CEE5D0", fontFamily: "Playfair Display, serif", fontWeight: 400 }}
+                  style={{ backgroundColor: "#B97A95", fontFamily: "Playfair Display, serif", fontWeight: 400 }}
                 >Start Quiz !!!</div>
               </Link>
               </div>
@@ -53,6 +54,8 @@ function MainPage () {
           </div>
         </div>
       </div>
+
+      <ParticlesBg color="#79B4B7" type="cobweb" bg={true} />
     </>
   )
 }
